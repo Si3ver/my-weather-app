@@ -1,5 +1,6 @@
-import './App.css';
 import React, { useEffect, useState } from 'react';
+import Weather from './components/weather';
+import './App.css';
 
 function App() {
   const [lat, setLat] = useState([]);
@@ -27,7 +28,11 @@ function App() {
 
   return (
     <div className="App">
-      {JSON.stringify(data, null, 2)}
+      {( typeof data.main != 'undefined' ) ? (
+        <Weather weatherData={data} />
+      ) : (
+        <div>loading...</div>
+      )}
     </div>
   );
 }
